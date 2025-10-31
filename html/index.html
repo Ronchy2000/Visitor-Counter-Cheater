@@ -1,311 +1,115 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>� 访问量统计测试页面</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-        
-        .container {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            max-width: 800px;
-            width: 100%;
-            padding: 40px;
-            text-align: center;
-        }
-        
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .subtitle {
-            color: #666;
-            font-size: 1.1em;
-            margin-bottom: 40px;
-        }
-        
-        .stats-container {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 40px;
-            border-radius: 15px;
-            margin: 30px 0;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
-            gap: 30px;
-            align-items: center;
-        }
-        
-        .stat-item {
-            color: white;
-        }
-        
-        .stat-label {
-            font-size: 0.9em;
-            opacity: 0.9;
-            margin-bottom: 10px;
-        }
-        
-        .stat-value {
-            font-size: 3em;
-            font-weight: bold;
-            line-height: 1.2;
-        }
-        
-        .stat-unit {
-            font-size: 0.8em;
-            opacity: 0.8;
-            margin-top: 5px;
-        }
-        
-        .divider {
-            width: 2px;
-            height: 80px;
-            background: rgba(255, 255, 255, 0.3);
-        }
-        
-        .info-box {
-            background: #f8f9fa;
-            border-left: 4px solid #667eea;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 30px 0;
-            text-align: left;
-        }
-        
-        .info-box h3 {
-            color: #667eea;
-            margin-bottom: 10px;
-        }
-        
-        .info-box p {
-            color: #666;
-            line-height: 1.6;
-        }
-        
-        .tip {
-            color: #999;
-            font-size: 0.9em;
-            margin-top: 20px;
-        }
-        
-        .github-link {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 12px 30px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: bold;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        
-        .github-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
-        }
-        
-        @media (max-width: 600px) {
-            .stats-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
-            .divider {
-                width: 80%;
-                height: 2px;
-                margin: 0 auto;
-            }
-            
-            .stat-value {
-                font-size: 2.5em;
-            }
-            
-            h1 {
-                font-size: 2em;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>访问量统计测试页面</title>
+  <style>
+    :root{
+      --grad-a:#667eea; --grad-b:#764ba2;
+      --bg:#fff; --muted:#666; --soft:#f6f7fb;
+      --ring:rgba(102,126,234,.2);
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{
+      font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;
+      min-height:100vh; display:flex; align-items:center; justify-content:center;
+      background:linear-gradient(135deg,var(--grad-a) 0%,var(--grad-b) 100%);
+      padding:24px;
+    }
+    .container{
+      width:100%; max-width:860px; background:var(--bg);
+      border-radius:20px; padding:32px; box-shadow:0 20px 60px rgba(0,0,0,.28);
+    }
+    header{
+      display:flex; align-items:flex-start; justify-content:space-between; gap:16px; margin-bottom:18px;
+    }
+    h1{
+      font-size:28px; line-height:1.2;
+      background:linear-gradient(135deg,var(--grad-a),var(--grad-b));
+      -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+    }
+    .subtitle{color:var(--muted); margin-top:6px}
+
+    /* 顶部信息条（阅读量/访客） */
+    .meta-bar{
+      display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:18px;
+    }
+    .meta-pill{
+      display:flex; align-items:center; gap:12px;
+      background:linear-gradient(135deg,var(--grad-a),var(--grad-b));
+      color:#fff; padding:14px 16px; border-radius:14px;
+      box-shadow:0 10px 28px rgba(102,126,234,.35);
+    }
+    .meta-icon{font-size:22px; line-height:1}
+    .meta-text{display:flex; flex-direction:column; line-height:1.1}
+    .meta-label{opacity:.95; font-size:13px}
+    .meta-value{font-weight:700; font-size:22px}
+
+    /* 主卡片说明区 */
+    .card{
+      margin-top:26px; background:var(--soft); border-radius:12px; padding:20px;
+      border:1px solid #eceef5;
+    }
+    .card h3{color:var(--grad-a); margin-bottom:8px; font-size:16px}
+    .card p{color:#555; line-height:1.7}
+    .tip{color:#8a8a8a; font-size:13px; margin-top:16px}
+
+    .btn{
+      display:inline-block; margin-top:18px; padding:12px 22px;
+      background:linear-gradient(135deg,var(--grad-a),var(--grad-b));
+      color:#fff; text-decoration:none; border-radius:999px; font-weight:600;
+      box-shadow:0 10px 22px rgba(102,126,234,.35); transition:transform .18s, box-shadow .18s;
+    }
+    .btn:hover{transform:translateY(-2px); box-shadow:0 14px 28px rgba(102,126,234,.45)}
+
+    /* 响应式 */
+    @media (max-width:720px){
+      .container{padding:22px}
+      header{flex-direction:column; gap:8px}
+      .meta-bar{grid-template-columns:1fr}
+      h1{font-size:24px}
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
+  <div class="container">
+    <header>
+      <div>
         <h1>🚀 访问量统计测试</h1>
         <p class="subtitle">使用不蒜子统计服务实时监控页面访问数据</p>
-        
-        <div class="stats-container">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-label">📖 总阅读量</div>
-                    <div class="stat-value">
-                        <span id="busuanzi_value_page_pv">--</span>
-                    </div>
-                    <div class="stat-unit">次</div>
-                </div>
-                
-                <div class="divider"></div>
-                
-                <div class="stat-item">
-                    <div class="stat-label">👥 总访客数</div>
-                    <div class="stat-value">
-                        <span id="busuanzi_value_page_uv">--</span>
-                    </div>
-                    <div class="stat-unit">人</div>
-                </div>
+        <div class="meta-bar">
+          <div class="meta-pill">
+            <div class="meta-icon">📖</div>
+            <div class="meta-text">
+              <span class="meta-label">本页阅读量（PV）</span>
+              <span class="meta-value"><span id="busuanzi_value_page_pv">--</span></span>
             </div>
+          </div>
+          <div class="meta-pill">
+            <div class="meta-icon">👥</div>
+            <div class="meta-text">
+              <span class="meta-label">全站访客（UV）</span>
+              <span class="meta-value"><span id="busuanzi_value_site_uv">--</span></span>
+            </div>
+          </div>
         </div>
-        
-        <div class="info-box">
-            <h3>💡 使用说明</h3>
-            <p>
-                1. 这个页面使用不蒜子统计服务来记录访问量<br>
-                2. 运行 <code>selenium_github.py</code> 脚本可以自动增加访问量<br>
-                3. 每次刷新页面后，上方的统计数字会自动更新
-            </p>
-        </div>
-        
-        <p class="tip">💡 运行脚本后刷新页面查看统计变化</p>
-        
-        <a href="https://github.com/Ronchy2000/Visitor-Counter-Cheater" class="github-link" target="_blank">
-            📦 查看 GitHub 项目
-        </a>
-    </div>
-    
-    <!-- 不蒜子统计脚本 -->
-    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+      </div>
+    </header>
+
+    <section class="card">
+      <h3>💡 使用说明</h3>
+      <p>
+        1）本页通过不蒜子脚本展示 PV/UV。<br>
+        2）统计数字由脚本异步回填，首次加载可能有 1-2 秒延迟。<br>
+        3）如果你想显示“本页访客数”，把上面的 <code>site_uv</code> 改成 <code>page_uv</code>（前提是你的统计端支持该键）。<br>
+      </p>
+      <p class="tip">提示：如遇跨域/屏蔽脚本，统计可能不更新；检查浏览器控制台或网络面板可快速定位问题。</p>
+      <a class="btn" href="https://busuanzi.ibruce.info/" target="_blank">查看不蒜子说明</a>
+    </section>
+  </div>
+
+  <!-- 不蒜子统计脚本 -->
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 </body>
 </html>
-
----
-
-## ✨ 功能特点
-
-- 使用真实浏览器（Chrome）访问，完全模拟人类行为
-- 支持 12+ 种设备伪装（桌面、手机、平板）
-- 泊松分布控制访问间隔，更自然的访问节奏
-- 随机滚动页面，模拟真实用户阅读
-- 详细的 CSV 日志记录
-- 支持无头模式，后台静默运行
-
-## 📋 实测结果
-
-| 脚本文件 | 方法 | 是否有效 |
-|---------|------|---------|
-| `selenium_github.py` | 真实浏览器模拟 | ✅ **成功** |
-| `request_github.py` | HTTP 请求 | ❌ 失效 |
-| `requset_github2.py` | HTTP 请求 | ❌ 失效 |
-
-> ⚠️ 纯 HTTP 请求无法触发 JS 统计代码，只有真实浏览器访问才有效
-
-## 🛠️ 安装依赖
-
-```bash
-pip install selenium webdriver-manager numpy
-```
-
-## 🚀 快速开始
-
-### 1. 修改配置
-
-编辑 `selenium_github.py` 文件的 `CONFIG` 字典：
-
-```python
-CONFIG = {
-    "URL": "你的目标网址",        # 修改为你要刷的页面
-    "MAX_VISITS": 15,            # 访问次数（0 = 无限）
-    "INTERVAL_MEAN": 5,          # 平均间隔秒数
-    "HEADLESS": True,            # True = 后台运行
-    "WAIT_AFTER_LOAD": 3.0,      # 页面加载后等待时间
-}
-```
-
-### 2. 运行脚本
-
-```bash
-python selenium_github.py
-```
-
-### 3. 查看日志
-
-运行后会在 `logs/` 目录下生成 `visits_log_selenium.csv`，记录每次访问的详细信息。
-
-## 📊 日志字段说明
-
-| 字段 | 说明 |
-|-----|------|
-| timestamp_utc | 访问时间（UTC） |
-| visit_number | 访问序号 |
-| url | 目标网址 |
-| user_agent | 使用的 User-Agent |
-| screen_width/height | 模拟的屏幕分辨率 |
-| status | 访问状态（SUCCESS/ERROR） |
-| note | 备注信息 |
-
-## ⚙️ 高级配置
-
-### 泊松分布间隔
-
-脚本使用泊松分布（更准确说是指数分布）来控制访问间隔，使访问时间更自然、更难被检测。
-
-- `INTERVAL_MEAN = 5`：平均每 5 秒访问一次
-- 实际间隔会在 2 秒到 15 秒之间随机波动
-
-### 设备伪装
-
-脚本内置 12 种设备配置：
-- 桌面设备（Windows/Mac/Linux + Chrome/Firefox/Safari）
-- 移动设备（iPhone/Android 多种型号）
-- 平板设备（iPad/Android Tablet）
-
-每次访问会随机选择设备和分辨率。
-
-## 🔧 常见问题
-
-**Q: 为什么要用 Selenium 而不是 requests？**  
-A: 访问统计通过 JavaScript 实现，必须执行 JS 代码才能计数。
-
-**Q: 无头模式会被检测吗？**  
-A: 脚本已经做了反检测处理（修改 webdriver 属性、随机 UA 等），但没有 100% 保证。
-
-**Q: 如何停止脚本？**  
-A: 按 `Ctrl+C` 即可安全停止。
-
-**Q: 日志文件在哪里？**  
-A: 在脚本同目录下的 `logs/visits_log_selenium.csv`。
-
-## ⚠️ 免责声明
-
-本工具仅供学习和测试使用，请勿用于任何违反网站服务条款或法律法规的行为。使用者需自行承担使用本工具产生的一切后果。
-
-## 📄 许可证
-
-MIT License
-
-
-
-
