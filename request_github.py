@@ -5,7 +5,7 @@ from datetime import datetime
 import hashlib
 
 # ============ 配置区域 ============
-TARGET_URL = "https://github.com/Ronchy2000/Visitor-Counter-Cheater"  # 修改为你要访问的网址
+TARGET_URL = "https://visitor-counter-cheater.vercel.app/"  # 修改为你要访问的网址
 MAX_INTERVAL = 26  # 最大访问间隔（秒）
 MIN_INTERVAL = 5  # 最小访问间隔（秒），避免间隔过短
 

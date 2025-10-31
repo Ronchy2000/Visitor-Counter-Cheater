@@ -25,7 +25,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 # ============= 配置区域（在这里修改参数） =================
 CONFIG = {
-    "URL": "https://github.com/Ronchy2000/Visitor-Counter-Cheater",   # 目标 URL
+    "URL": "https://visitor-counter-cheater.vercel.app/",   # 目标 URL
     "MAX_VISITS": 15,           # 最大访问次数（设置为 0 表示无限次）
     "INTERVAL_MEAN": 5,        # 平均访问间隔（秒），泊松分布的 lambda 参数
     "HEADLESS": True,           # True: 无头模式, False: 显示浏览器窗口（调试用）

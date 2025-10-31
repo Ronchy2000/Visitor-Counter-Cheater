@@ -11,7 +11,7 @@ import requests
 # ====================== 配 置 ======================
 CONFIG = {
     # 目标地址（示例：内网穿透后的域名 + 页面路径）
-    "URL": "https://github.com/Ronchy2000/Visitor-Counter-Cheater",
+    "URL": "https://visitor-counter-cheater.vercel.app/",
 
     # 基础间隔（秒）：例如每小时一次 3600；快速验证可改小如 5
     "INTERVAL": 10,
