@@ -11,6 +11,7 @@
 **演示网址：** `https://visitor-counter-cheater.vercel.app/`
 
 运行脚本时将 URL 设置为上面的网址，然后刷新页面即可看到访问量增加！
+</div>
 
 ```python
 CONFIG = {
@@ -19,7 +20,7 @@ CONFIG = {
 }
 ```
 
-</div>
+
 
 ---
 
