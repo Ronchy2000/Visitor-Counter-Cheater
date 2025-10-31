@@ -268,6 +268,10 @@ python3 selenium_github.py
 - 使用前建议先小规模测试
 - 遵守目标网站的使用条款
 
+代理池构建及使用方法：
+- 自建代理ip池：[ynamic-Proxy-Pool](https://github.com/Ronchy2000/Dynamic-Proxy-Pool)
+- 购买代理ip：[https://www.kuaidaili.com/login/?next=/cart2%3Ft%3Dtps_c%26period%3D0](https://www.kuaidaili.com/login/?next=/cart2%3Ft%3Dtps_c%26period%3D0)
+
 ---
 
 ## 📄 免责声明
