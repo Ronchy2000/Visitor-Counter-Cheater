@@ -4,33 +4,20 @@
 
 <div align="center">
 
-### 📊 实时统计展示
+## 📊 在线演示
 
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+### 🌐 [点击查看实时统计效果](https://visitor-counter-cheater.vercel.app/)
 
-<div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; border-radius: 15px; margin: 20px auto; max-width: 600px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-  <div style="display: flex; justify-content: space-around; color: white;">
-    <div style="text-align: center;">
-      <div style="font-size: 14px; opacity: 0.9; margin-bottom: 8px;">📖 总阅读量</div>
-      <div style="font-size: 36px; font-weight: bold;">
-        <span id="busuanzi_value_page_pv">--</span>
-      </div>
-      <div style="font-size: 12px; opacity: 0.8; margin-top: 5px;">次</div>
-    </div>
-    <div style="width: 2px; background: rgba(255,255,255,0.3);"></div>
-    <div style="text-align: center;">
-      <div style="font-size: 14px; opacity: 0.9; margin-bottom: 8px;">👥 总访客量</div>
-      <div style="font-size: 36px; font-weight: bold;">
-        <span id="busuanzi_value_page_uv">--</span>
-      </div>
-      <div style="font-size: 12px; opacity: 0.8; margin-top: 5px;">人</div>
-    </div>
-  </div>
-</div>
+**演示网址：** `https://visitor-counter-cheater.vercel.app/`
 
-<p style="color: #666; font-size: 12px; margin-top: 10px;">
-  💡 运行脚本后刷新页面查看统计变化
-</p>
+运行脚本时将 URL 设置为上面的网址，然后刷新页面即可看到访问量增加！
+
+```python
+CONFIG = {
+    "URL": "https://visitor-counter-cheater.vercel.app/",
+    # ... 其他配置
+}
+```
 
 </div>
 
@@ -69,7 +56,7 @@ pip install selenium webdriver-manager numpy
 
 ```python
 CONFIG = {
-    "URL": "你的目标网址",        # 修改为你要刷的页面
+    "URL": "https://visitor-counter-cheater.vercel.app/",  # 修改为你要刷的页面
     "MAX_VISITS": 15,            # 访问次数（0 = 无限）
     "INTERVAL_MEAN": 5,          # 平均间隔秒数
     "HEADLESS": True,            # True = 后台运行
@@ -83,9 +70,11 @@ CONFIG = {
 python selenium_github.py
 ```
 
-### 3. 查看日志
+### 3. 查看效果
 
-运行后会在 `logs/` 目录下生成 `visits_log_selenium.csv`，记录每次访问的详细信息。
+- 脚本运行完成后，访问 [演示页面](https://visitor-counter-cheater.vercel.app/)
+- 刷新页面，即可看到访问量和访客数增加
+- 查看 `logs/visits_log_selenium.csv` 了解详细访问记录
 
 ## 📊 日志字段说明
 
