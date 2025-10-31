@@ -1,131 +1,282 @@
 # 🚀 访问量计数器刷新工具
 
-> 使用 Selenium 模拟真实浏览器访问，支持多种设备伪装和智能访问间隔控制
+> 支持多种计数服务的访问量提升工具 • 高效 HTTP 请求 • Selenium 浏览器模拟 • 多设备伪装
 
 <div align="center">
 
-## 📊 在线演示
+[![visitors](https://visitor-badge.laobi.icu/badge?page_id=ronchy2000.Visitor-Counter-Cheater&left_color=gray&right_color=blue&style=for-the-badge)](https://github.com/Ronchy2000/Visitor-Counter-Cheater)
 
-### 🌐 [点击查看实时统计效果](https://visitor-counter-cheater.vercel.app/)
+### 📊 在线演示
+
+#### 🌐 [点击查看实时统计效果](https://visitor-counter-cheater.vercel.app/)
 
 **演示网址：** `https://visitor-counter-cheater.vercel.app/`
 
-运行脚本时将 URL 设置为上面的网址，然后刷新页面即可看到访问量增加！
 </div>
 
+---
+
+## ⚡ 快速开始
+
+### 方式一：测试本项目（推荐）
+
+直接运行脚本，观察上方徽章数字变化：
+
+```bash
+# 克隆项目
+git clone https://github.com/Ronchy2000/Visitor-Counter-Cheater.git
+cd Visitor-Counter-Cheater
+
+# 运行脚本（默认配置已指向本项目）
+python3 visitor_badge_attack.py
+```
+
+**效果**: 刷新本页面，顶部徽章数字立即增加！
+
+### 方式二：测试在线演示
+
+使用不同的攻击脚本测试演示站点：
+
+```bash
+# visitor-badge 方式（修改配置指向演示站点）
+python3 busuanzi_attack_efficient.py
+
+# 或使用 Selenium 通用方式
+python3 selenium_all_website.py
+```
+
+配置示例：
 ```python
 CONFIG = {
-    "URL": "https://visitor-counter-cheater.vercel.app/",
+    "TARGET_URL": "https://visitor-counter-cheater.vercel.app/",
+    "MAX_VISITS": 50,
     # ... 其他配置
 }
 ```
 
-
+**效果**: 访问 [演示页面](https://visitor-counter-cheater.vercel.app/)，刷新后看到访问量增加！
 
 ---
 
-## ✨ 功能特点
+## 💡 技术原理
 
-- 使用真实浏览器（Chrome）访问，完全模拟人类行为
-- 支持 12+ 种设备伪装（桌面、手机、平板）
-- 泊松分布控制访问间隔，更自然的访问节奏
-- 随机滚动页面，模拟真实用户阅读
-- 详细的 CSV 日志记录
-- 支持无头模式，后台静默运行
+### HTTP 请求方式（推荐）
 
-## 📋 实测结果
+直接发送 HTTP 请求到计数服务后端，**速度快、资源消耗低**，适用于大部分公开计数服务。
 
-| 脚本文件 | 方法 | 是否有效 |
-|---------|------|---------|
-| `selenium_github.py` | 真实浏览器模拟 | ✅ **成功** |
-| `request_github.py` | HTTP 请求 | ❌ 失效 |
-| `requset_github2.py` | HTTP 请求 | ❌ 失效 |
+**优势**：
+- 速度快（10-50倍于浏览器模拟）
+- 无需浏览器依赖
+- 资源占用极小
+- 支持高并发
 
-> ⚠️ 纯 HTTP 请求无法触发 JS 统计代码，只有真实浏览器访问才有效
+**限制**：
+- 仅适用于服务端计数（如 visitor-badge）
+- 不适用于纯前端 JS 统计（如不蒜子的某些部署）
 
-## 🛠️ 安装依赖
+### Selenium 浏览器模拟（通用）
 
+使用真实浏览器访问页面，执行 JavaScript 统计代码，**兼容性最强**。
+
+**优势**：
+- 完全模拟真实用户行为
+- 支持多种设备伪装
+- 支持所有基于 JS 的统计服务
+- 可绕过简单的反爬虫机制
+
+**限制**：
+- 速度较慢（需要完整加载页面）
+- 需要安装浏览器驱动
+- 资源占用较高
+
+---
+
+## 🎯 支持的计数服务
+
+### 1. visitor-badge（推荐）
+
+**服务**: GitHub README 徽章计数服务
+
+**脚本**: `visitor_badge_attack.py`
+
+**特点**:
+- 基于 SVG 图片计数
+- 无身份验证
+- 无速率限制
+- 性能：~600ms/次，100% 成功率
+- 支持任意 GitHub 仓库 URL
+
+**使用方法**:
+
+```bash
+python3 visitor_badge_attack.py
+```
+
+**配置说明**:
+
+修改脚本中的 `TARGET_URL` 为目标 GitHub 仓库地址：
+
+```python
+CONFIG = {
+    # 支持多种格式:
+    # "https://github.com/username/repository"
+    # "github.com/username/repository"
+    # "username/repository"
+    # "username.repository"
+    "TARGET_URL": "https://github.com/Ronchy2000/Visitor-Counter-Cheater",
+    # ... 其他配置
+}
+```
+
+**测试效果**:
+
+- 运行脚本后，访问目标仓库的 README
+- 如果 README 中有 visitor-badge 徽章，数字会增加
+- 本项目 README 顶部就有徽章，可直接测试
+
+**详细说明**: 查看 `visitor_badge_analysis/README.md`
+
+---
+
+### 2. 不蒜子（busuanzi）
+
+**服务**: 轻量级访客统计服务
+
+**脚本**: `busuanzi_efficient.py`
+
+**特点**:
+- 基于 JSONP 回调
+- 需要正确的 Referer 头
+- 无明显限制
+- 性能：~1000ms/次
+
+```bash
+python3 busuanzi_efficient.py
+```
+
+配置修改 `URL` 和 `REFERER` 为目标站点。
+
+---
+
+### 3. 西安电子科技大学教师主页
+
+**目标**: 教师个人主页的访问量和点赞功能
+
+**脚本**: 
+- 访问量: `xidian_counter_attack.py`
+- 点赞: `xidian_like_attack.py`
+
+**特点**:
+- 访问量：无限制，35ms/次
+- 点赞：⚠️ IP 限制（24小时），需代理池
+
+```bash
+# 访问量攻击
+python3 xidian_counter_attack.py
+
+# 点赞攻击（注意 IP 限制）
+python3 xidian_like_attack.py
+```
+
+**详细说明**: 查看 `xidian_analysis/README.md`
+
+---
+
+### 4. 通用方案（Selenium）
+
+**脚本**: `selenium_all_website.py`
+
+**适用场景**:
+- 以上专用脚本都不适用时
+- 需要执行复杂 JS 逻辑
+- 需要模拟真实用户交互
+
+**依赖安装**:
 ```bash
 pip install selenium webdriver-manager numpy
 ```
 
-## 🚀 快速开始
-
-### 1. 修改配置
-
-编辑 `selenium_github.py` 文件的 `CONFIG` 字典：
-
+**配置示例**:
 ```python
 CONFIG = {
-    "URL": "https://visitor-counter-cheater.vercel.app/",  # 修改为你要刷的页面
-    "MAX_VISITS": 15,            # 访问次数（0 = 无限）
-    "INTERVAL_MEAN": 5,          # 平均间隔秒数
-    "HEADLESS": True,            # True = 后台运行
-    "WAIT_AFTER_LOAD": 3.0,      # 页面加载后等待时间
+    "URL": "https://your-target-site.com/",
+    "MAX_VISITS": 50,
+    "INTERVAL_MEAN": 5,
+    "HEADLESS": True,
 }
 ```
 
-### 2. 运行脚本
-
+**运行**:
 ```bash
-python selenium_github.py
+python3 selenium_github.py
 ```
 
-### 3. 查看效果
+---
 
-- 脚本运行完成后，访问 [演示页面](https://visitor-counter-cheater.vercel.app/)
-- 刷新页面，即可看到访问量和访客数增加
-- 查看 `logs/visits_log_selenium.csv` 了解详细访问记录
+## 📚 使用建议
 
-## 📊 日志字段说明
+**选择攻击脚本的优先级**：
 
-| 字段 | 说明 |
-|-----|------|
-| timestamp_utc | 访问时间（UTC） |
-| visit_number | 访问序号 |
-| url | 目标网址 |
-| user_agent | 使用的 User-Agent |
-| screen_width/height | 模拟的屏幕分辨率 |
-| status | 访问状态（SUCCESS/ERROR） |
-| note | 备注信息 |
+1. **优先使用专用 HTTP 脚本**：如果目标使用 visitor-badge、不蒜子等已知服务
+2. **其次尝试分析接口**：使用浏览器开发者工具抓包，编写针对性脚本
+3. **最后使用 Selenium**：当以上方法都不可行时的通用方案
 
-## ⚙️ 高级配置
+**性能对比**（单次请求）：
 
-### 泊松分布间隔
+| 方法 | 耗时 | 资源占用 | 适用范围 |
+|------|------|----------|----------|
+| HTTP 请求 | 35-1000ms | 极低 | 服务端计数 |
+| Selenium | 3000-8000ms | 高 | 所有类型 |
 
-脚本使用泊松分布（更准确说是指数分布）来控制访问间隔，使访问时间更自然、更难被检测。
+---
 
-- `INTERVAL_MEAN = 5`：平均每 5 秒访问一次
-- 实际间隔会在 2 秒到 15 秒之间随机波动
+## 📁 项目结构
 
-### 设备伪装
+```
+.
+├── README.md                       # 本文件
+├── visitor_badge_attack.py         # visitor-badge 攻击脚本
+├── busuanzi_efficient.py           # 不蒜子攻击脚本
+├── xidian_counter_attack.py        # 西电访问量攻击
+├── xidian_like_attack.py           # 西电点赞攻击
+├── selenium_github.py              # Selenium 通用脚本
+├── logs/                           # 日志目录
+├── html/                           # 演示页面
+├── visitor_badge_analysis/         # visitor-badge 分析资料
+└── xidian_analysis/                # 西电系统分析资料
+```
 
-脚本内置 12 种设备配置：
-- 桌面设备（Windows/Mac/Linux + Chrome/Firefox/Safari）
-- 移动设备（iPhone/Android 多种型号）
-- 平板设备（iPad/Android Tablet）
+---
 
-每次访问会随机选择设备和分辨率。
+## 📊 日志记录
 
-## 🔧 常见问题
+所有脚本都会在 `logs/` 目录生成 CSV 日志文件，记录每次访问的详细信息：
 
-**Q: 为什么要用 Selenium 而不是 requests？**  
-A: 访问统计通过 JavaScript 实现，必须执行 JS 代码才能计数。
+- 时间戳
+- 访问序号
+- 目标 URL
+- User-Agent
+- 状态（成功/失败）
+- 响应时间
 
-**Q: 无头模式会被检测吗？**  
-A: 脚本已经做了反检测处理（修改 webdriver 属性、随机 UA 等），但没有 100% 保证。
+---
 
-**Q: 如何停止脚本？**  
-A: 按 `Ctrl+C` 即可安全停止。
+## ⚠️ 注意事项
 
-**Q: 日志文件在哪里？**  
-A: 在脚本同目录下的 `logs/visits_log_selenium.csv`。
+- 合理控制访问频率，避免对目标服务造成压力
+- 部分服务可能有 IP 限制，需要使用代理池
+- 使用前建议先小规模测试
+- 遵守目标网站的使用条款
 
-## ⚠️ 免责声明
+---
 
-本工具仅供学习和测试使用，请勿用于任何违反网站服务条款或法律法规的行为。使用者需自行承担使用本工具产生的一切后果。
+## 📄 免责声明
 
-## 📄 许可证
+本工具仅供学习和技术研究使用，请勿用于任何违反网站服务条款或法律法规的行为。使用者需自行承担使用本工具产生的一切后果。
+
+---
+
+## 📜 License
 
 MIT License
 
