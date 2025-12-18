@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-visitor-badge 访客计数器分析工具
+visitor-badge 访客计数器分析工具（学习用）
 
 目标: https://github.com/Ronchy2000/Raspi-ImmortalWrt
 服务: https://visitor-badge.laobi.icu
@@ -15,7 +15,7 @@ import json
 import re
 
 # GitHub项目信息
-GITHUB_REPO = "Ronchy2000/Raspi-ImmortalWrt"
+GITHUB_REPO = "Ronchy2000/Xidian-LaTeX-Template-for-macOS"
 GITHUB_URL = f"https://github.com/{GITHUB_REPO}"
 
 print("🔍 visitor-badge 服务分析")
@@ -41,7 +41,7 @@ try:
     
     # 匹配visitor-badge链接
     patterns = [
-        r'visitor-badge\.laobi\.icu/badge\?page_id=([^"\'&\s]+)',
+        r'visitor-badge\.laobi\.icu/badge\?page_id=([^"\'&\\]+)',
         r'https?://visitor-badge\.laobi\.icu/badge\?[^"\'>\s]+',
     ]
     
@@ -58,7 +58,7 @@ try:
     
     if page_ids:
         print(f"✅ 找到 page_id: {page_ids}")
-        page_id = page_ids[0]
+        page_id = page_ids[0].rstrip('\\').rstrip()
     else:
         print("⚠️  未在HTML中找到page_id，尝试常见格式...")
         # 常见格式：用户名.项目名
@@ -93,11 +93,6 @@ try:
                 numbers = re.findall(r'>(\d+)<', svg_text)
                 if numbers:
                     print(f"   📊 当前访客数: {numbers[-1]}")
-                
-                # 保存SVG
-                with open('visitor_badge_query.svg', 'wb') as f:
-                    f.write(data)
-                print(f"   💾 已保存到: visitor_badge_query.svg")
     
     except Exception as e:
         print(f"❌ 查询失败: {e}")
@@ -120,11 +115,6 @@ try:
                 numbers = re.findall(r'>(\d+)<', svg_text)
                 if numbers:
                     print(f"   📊 访问后的访客数: {numbers[-1]}")
-                
-                # 保存SVG
-                with open('visitor_badge_normal.svg', 'wb') as f:
-                    f.write(data)
-                print(f"   💾 已保存到: visitor_badge_normal.svg")
     
     except Exception as e:
         print(f"❌ 访问失败: {e}")
@@ -167,6 +157,9 @@ try:
     print("- 直接循环请求badge URL即可增加计数")
     print("- 需要测试是否有IP限制或频率限制")
     print("- 如果有限制，可能需要代理池")
+    print()
+    print("💻 实用工具:")
+    print("- 使用 visitor_badge_tool.py 进行交互式操作")
 
 except Exception as e:
     print(f"❌ 错误: {e}")
