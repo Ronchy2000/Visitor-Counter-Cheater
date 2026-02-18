@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>� 访问量统计测试页面</title>
+    <meta name="description" content="访问量统计测试页面，展示不蒜子统计服务的实时页面阅读量和访客数。">
+    <meta name="theme-color" content="#667eea">
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+    <link rel="shortcut icon" href="./favicon.svg">
+    <title>访问量统计测试页面</title>
     <style>
         * {
             margin: 0;
@@ -52,6 +56,17 @@
             border-radius: 15px;
             margin: 30px 0;
             box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .stats-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .stats-link:hover .stats-container {
+            box-shadow: 0 14px 34px rgba(102, 126, 234, 0.46);
+            transform: translateY(-1px);
         }
         
         .stats-grid {
@@ -113,6 +128,109 @@
             font-size: 0.9em;
             margin-top: 20px;
         }
+
+        .service-link {
+            color: #3d4ea3;
+            text-decoration: none;
+            border-bottom: 1px dashed rgba(61, 78, 163, 0.35);
+            font-weight: 600;
+        }
+
+        .service-link:hover {
+            color: #2f3d84;
+            border-bottom-color: rgba(47, 61, 132, 0.55);
+        }
+
+        .badge-link {
+            display: block;
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .badge-box {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 22px;
+            margin: 24px 0;
+            border: 1px solid #e9ecef;
+            text-align: left;
+        }
+
+        .badge-link:hover .badge-box {
+            border-color: #ccd5fb;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.14);
+        }
+
+        .badge-title {
+            color: #3d4ea3;
+            font-size: 1.1em;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .badge-desc {
+            color: #666;
+            font-size: 0.95em;
+            margin-bottom: 14px;
+            line-height: 1.5;
+        }
+
+        .badge-preview {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.12) 0%, rgba(118, 75, 162, 0.12) 100%);
+            border-radius: 10px;
+            border: 1px solid rgba(102, 126, 234, 0.28);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
+            padding: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 52px;
+            width: fit-content;
+            margin: 0 auto;
+        }
+
+        .badge-preview img {
+            max-width: 100%;
+            height: 28px;
+        }
+
+        .actions {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+
+        .refresh-btn {
+            border: none;
+            border-radius: 24px;
+            padding: 12px 24px;
+            font-size: 0.95em;
+            font-weight: 700;
+            color: white;
+            cursor: pointer;
+            background: linear-gradient(135deg, #3c5ee8 0%, #5f3da0 100%);
+            transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+        }
+
+        .refresh-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 18px rgba(76, 95, 216, 0.35);
+        }
+
+        .refresh-btn:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .refresh-status {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
         
         .github-link {
             display: inline-block;
@@ -150,53 +268,139 @@
             h1 {
                 font-size: 2em;
             }
+
+            .badge-box {
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>🚀 访问量统计测试</h1>
-        <p class="subtitle">使用不蒜子统计服务实时监控页面访问数据</p>
+        <p class="subtitle">使用 <a class="service-link" href="https://busuanzi.ibruce.info/" target="_blank" rel="noopener noreferrer">不蒜子</a> 统计服务实时监控页面访问数据</p>
         
-        <div class="stats-container">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-label">📖 总阅读量</div>
-                    <div class="stat-value">
-                        <span id="busuanzi_value_page_pv">--</span>
+        <a class="stats-link" href="https://busuanzi.ibruce.info/" target="_blank" rel="noopener noreferrer" aria-label="打开不蒜子统计服务">
+            <div class="stats-container">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-label">📖 总阅读量</div>
+                        <div class="stat-value">
+                            <span id="busuanzi_value_page_pv">--</span>
+                        </div>
+                        <div class="stat-unit">次</div>
                     </div>
-                    <div class="stat-unit">次</div>
-                </div>
-                
-                <div class="divider"></div>
-                
-                <div class="stat-item">
-                    <div class="stat-label">👥 总访客数</div>
-                    <div class="stat-value">
-                        <span id="busuanzi_value_site_uv">--</span>
+
+                    <div class="divider"></div>
+
+                    <div class="stat-item">
+                        <div class="stat-label">👥 总访客数</div>
+                        <div class="stat-value">
+                            <span id="busuanzi_value_site_uv">--</span>
+                        </div>
+                        <div class="stat-unit">人</div>
                     </div>
-                    <div class="stat-unit">人</div>
                 </div>
             </div>
-        </div>
+        </a>
+
+        <a class="badge-link" href="https://visitor-badge.laobi.icu/" target="_blank" rel="noopener noreferrer" aria-label="打开 Visitor Badge 服务">
+            <div class="badge-box">
+                <div class="badge-title">🧪 Visitor Badge 测试项</div>
+                <p class="badge-desc">
+                    用于验证 README 中的 <strong>visitor-badge</strong> 计数是否随脚本执行而变化。点击此区域可跳转到对应计数服务。
+                </p>
+                <div class="badge-preview">
+                    <img
+                        id="visitor-badge-img"
+                        src="https://visitor-badge.laobi.icu/badge?page_id=ronchy2000.Visitor-Counter-Cheater&left_color=gray&right_color=blue&style=for-the-badge"
+                        alt="Visitor Badge 计数"
+                        loading="lazy"
+                    >
+                </div>
+            </div>
+        </a>
         
         <div class="info-box">
             <h3>💡 使用说明</h3>
             <p>
-                1. 这个页面使用不蒜子统计服务来记录访问量<br>
-                2. 运行 <code>selenium_github.py</code> 脚本可以自动增加访问量<br>
-                3. 每次刷新页面后，上方的统计数字会自动更新
+                1. 这个页面使用 <a class="service-link" href="https://busuanzi.ibruce.info/" target="_blank" rel="noopener noreferrer">不蒜子</a> 统计服务来记录访问量<br>
+                2. 运行 <code>visitor_badge_attack.py</code> 或 <code>selenium_all_website.py</code> 脚本可模拟访问<br>
+                3. 点击“刷新统计”后可查看最新的 <a class="service-link" href="https://busuanzi.ibruce.info/" target="_blank" rel="noopener noreferrer">不蒜子</a> 数据和 <a class="service-link" href="https://visitor-badge.laobi.icu/" target="_blank" rel="noopener noreferrer">Badge 变化</a>
             </p>
         </div>
         
-        <p class="tip">💡 运行脚本后刷新页面查看统计变化</p>
+        <div class="actions">
+            <button id="refresh-btn" class="refresh-btn" type="button">🔄 刷新统计</button>
+            <span id="refresh-status" class="refresh-status">准备就绪</span>
+        </div>
+
+        <p class="tip">💡 建议每次运行脚本后点击一次刷新统计</p>
         
-        <a href="https://github.com/Ronchy2000/Visitor-Counter-Cheater" class="github-link" target="_blank">
+        <a href="https://github.com/Ronchy2000/Visitor-Counter-Cheater" class="github-link" target="_blank" rel="noopener noreferrer">
             📦 查看 GitHub 项目
         </a>
     </div>
     
-    <!-- 不蒜子统计脚本 -->
-    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <script>
+        const BUSUANZI_SCRIPT_URL = "https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js";
+        const BADGE_URL = "https://visitor-badge.laobi.icu/badge?page_id=ronchy2000.Visitor-Counter-Cheater&left_color=gray&right_color=blue&style=for-the-badge";
+
+        const refreshBtn = document.getElementById("refresh-btn");
+        const refreshStatus = document.getElementById("refresh-status");
+        const badgeImg = document.getElementById("visitor-badge-img");
+        const pagePv = document.getElementById("busuanzi_value_page_pv");
+        const siteUv = document.getElementById("busuanzi_value_site_uv");
+
+        function setStatus(text) {
+            refreshStatus.textContent = text;
+        }
+
+        function resetBusuanziNumbers() {
+            pagePv.textContent = "--";
+            siteUv.textContent = "--";
+        }
+
+        function refreshBadgeImage() {
+            badgeImg.src = `${BADGE_URL}&t=${Date.now()}`;
+        }
+
+        function loadBusuanziScript() {
+            return new Promise((resolve, reject) => {
+                const oldScript = document.getElementById("busuanzi-script");
+                if (oldScript) {
+                    oldScript.remove();
+                }
+
+                const script = document.createElement("script");
+                script.id = "busuanzi-script";
+                script.async = true;
+                script.src = `${BUSUANZI_SCRIPT_URL}?t=${Date.now()}`;
+                script.onload = () => setTimeout(resolve, 300);
+                script.onerror = reject;
+                document.body.appendChild(script);
+            });
+        }
+
+        async function refreshStats() {
+            refreshBtn.disabled = true;
+            setStatus("刷新中...");
+            resetBusuanziNumbers();
+            refreshBadgeImage();
+
+            try {
+                await loadBusuanziScript();
+                const now = new Date().toLocaleTimeString("zh-CN", { hour12: false });
+                setStatus(`已刷新 ${now}`);
+            } catch (error) {
+                setStatus("刷新失败，请稍后重试");
+            } finally {
+                refreshBtn.disabled = false;
+            }
+        }
+
+        refreshBtn.addEventListener("click", refreshStats);
+        refreshStats();
+    </script>
 </body>
 </html>
