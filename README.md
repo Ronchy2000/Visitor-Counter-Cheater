@@ -1,5 +1,9 @@
 # 🚀 访问量计数器刷新工具
 
+[中文](./README.md) | [English](./README.en.md)
+
+---
+
 > 支持多种计数服务的访问量提升工具 • 高效 HTTP 请求 • Selenium 浏览器模拟 • 多设备伪装
 
 <div align="center">
@@ -55,6 +59,15 @@ CONFIG = {
 ```
 
 **效果**: 访问 [演示页面](https://visitor-counter-cheater.vercel.app/)，刷新后看到访问量增加！
+
+---
+
+## 🌐 文档语言
+
+- 使用示例（中文）: [docs/USAGE_EXAMPLE.md](./docs/USAGE_EXAMPLE.md)
+- Visitor Badge 分析（中文）: [docs/visitor_badge_analysis.md](./docs/visitor_badge_analysis.md)
+- 西电分析（中文）: [docs/xidian_analysis.md](./docs/xidian_analysis.md)
+- 西电点赞分析报告（中文）: [docs/XIDIAN_ANALYSIS_REPORT.md](./docs/XIDIAN_ANALYSIS_REPORT.md)
 
 ---
 
@@ -134,7 +147,7 @@ CONFIG = {
 - 如果 README 中有 visitor-badge 徽章，数字会增加
 - 本项目 README 顶部就有徽章，可直接测试
 
-**详细说明**: 查看 `visitor_badge_analysis/README.md`
+**详细说明**: 查看 `docs/visitor_badge_analysis.md`
 
 ---
 
@@ -142,7 +155,7 @@ CONFIG = {
 
 **服务**: 轻量级访客统计服务
 
-**脚本**: `busuanzi_efficient.py`
+**脚本**: `busuanzi_attack_efficient.py`
 
 **特点**:
 - 基于 JSONP 回调
@@ -151,7 +164,7 @@ CONFIG = {
 - 性能：~1000ms/次
 
 ```bash
-python3 busuanzi_efficient.py
+python3 busuanzi_attack_efficient.py
 ```
 
 配置修改 `URL` 和 `REFERER` 为目标站点。
@@ -178,7 +191,7 @@ python3 xidian_counter_attack.py
 python3 xidian_like_attack.py
 ```
 
-**详细说明**: 查看 `xidian_analysis/README.md`
+**详细说明**: 查看 `docs/xidian_analysis.md`
 
 ---
 
@@ -208,7 +221,7 @@ CONFIG = {
 
 **运行**:
 ```bash
-python3 selenium_github.py
+python3 selenium_all_website.py
 ```
 
 ---
@@ -234,16 +247,23 @@ python3 selenium_github.py
 
 ```
 .
-├── README.md                       # 本文件
+├── README.md                       # 默认中文文档
+├── README.en.md                    # 英文文档
+├── docs/
+│   ├── USAGE_EXAMPLE.md            # 中文使用示例
+│   ├── USAGE_EXAMPLE.en.md         # 英文使用示例
+│   ├── visitor_badge_analysis.md   # 中文分析文档
+│   ├── visitor_badge_analysis.en.md
+│   ├── xidian_analysis.md
+│   ├── xidian_analysis.en.md
+│   ├── XIDIAN_ANALYSIS_REPORT.md
+│   └── XIDIAN_ANALYSIS_REPORT.en.md
 ├── visitor_badge_attack.py         # visitor-badge 攻击脚本
-├── busuanzi_efficient.py           # 不蒜子攻击脚本
+├── busuanzi_attack_efficient.py    # 不蒜子攻击脚本
 ├── xidian_counter_attack.py        # 西电访问量攻击
 ├── xidian_like_attack.py           # 西电点赞攻击
-├── selenium_github.py              # Selenium 通用脚本
-├── logs/                           # 日志目录
-├── html/                           # 演示页面
-├── visitor_badge_analysis/         # visitor-badge 分析资料
-└── xidian_analysis/                # 西电系统分析资料
+├── selenium_all_website.py         # Selenium 通用脚本
+└── html/                           # 演示页面
 ```
 
 ---
@@ -269,7 +289,7 @@ python3 selenium_github.py
 - 遵守目标网站的使用条款
 
 代理池构建及使用方法：
-- 自建代理ip池：[ynamic-Proxy-Pool](https://github.com/Ronchy2000/Dynamic-Proxy-Pool)
+- 自建代理ip池：[Dynamic-Proxy-Pool](https://github.com/Ronchy2000/Dynamic-Proxy-Pool)
 - 购买代理ip：[https://www.kuaidaili.com/login/?next=/cart2%3Ft%3Dtps_c%26period%3D0](https://www.kuaidaili.com/login/?next=/cart2%3Ft%3Dtps_c%26period%3D0)
 
 ---

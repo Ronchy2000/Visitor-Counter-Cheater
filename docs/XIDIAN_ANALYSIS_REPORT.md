@@ -1,5 +1,9 @@
 # 🎯 西电教师主页点赞功能分析报告
 
+[中文](./XIDIAN_ANALYSIS_REPORT.md) | [English](./XIDIAN_ANALYSIS_REPORT.en.md)
+
+---
+
 ## 📊 成果总结
 
 ### ✅ 已成功实现

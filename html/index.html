@@ -34,6 +34,52 @@
             padding: 40px;
             text-align: center;
         }
+
+        .lang-switch {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 16px;
+        }
+
+        .lang-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #f7f9ff;
+            border: 1px solid #d3dcff;
+            border-radius: 999px;
+            padding: 4px;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        }
+
+        .lang-option {
+            border: none;
+            background: transparent;
+            color: #4b5eb5;
+            border-radius: 999px;
+            padding: 6px 12px;
+            font-size: 0.85em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+        }
+
+        .lang-option:hover {
+            color: #35479c;
+        }
+
+        .lang-option.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+            box-shadow: 0 4px 10px rgba(102, 126, 234, 0.35);
+        }
+
+        .lang-sep {
+            color: #8ea1ef;
+            font-weight: 700;
+            user-select: none;
+            line-height: 1;
+        }
         
         h1 {
             font-size: 2.5em;
@@ -250,6 +296,14 @@
         }
         
         @media (max-width: 600px) {
+            .container {
+                padding: 28px 20px;
+            }
+
+            .lang-switch {
+                justify-content: center;
+            }
+
             .stats-grid {
                 grid-template-columns: 1fr;
                 gap: 20px;
@@ -277,37 +331,45 @@
 </head>
 <body>
     <div class="container">
-        <h1>🚀 访问量统计测试</h1>
-        <p class="subtitle">使用 <a class="service-link" href="https://busuanzi.ibruce.info/" target="_blank" rel="noopener noreferrer">不蒜子</a> 统计服务实时监控页面访问数据</p>
+        <div class="lang-switch">
+            <div class="lang-toggle" role="group" aria-label="Language switch">
+                <button class="lang-option" type="button" data-lang="zh">中文</button>
+                <span class="lang-sep">|</span>
+                <button class="lang-option" type="button" data-lang="en">English</button>
+            </div>
+        </div>
+
+        <h1 id="page-title">🚀 访问量统计测试</h1>
+        <p id="subtitle-text" class="subtitle">使用 <a class="service-link" href="https://busuanzi.ibruce.info/" target="_blank" rel="noopener noreferrer">不蒜子</a> 统计服务实时监控页面访问数据</p>
         
-        <a class="stats-link" href="https://busuanzi.ibruce.info/" target="_blank" rel="noopener noreferrer" aria-label="打开不蒜子统计服务">
+        <a id="stats-link" class="stats-link" href="https://busuanzi.ibruce.info/" target="_blank" rel="noopener noreferrer" aria-label="打开不蒜子统计服务">
             <div class="stats-container">
                 <div class="stats-grid">
                     <div class="stat-item">
-                        <div class="stat-label">📖 总阅读量</div>
+                        <div id="stat-page-label" class="stat-label">📖 总阅读量</div>
                         <div class="stat-value">
                             <span id="busuanzi_value_page_pv">--</span>
                         </div>
-                        <div class="stat-unit">次</div>
+                        <div id="stat-page-unit" class="stat-unit">次</div>
                     </div>
 
                     <div class="divider"></div>
 
                     <div class="stat-item">
-                        <div class="stat-label">👥 总访客数</div>
+                        <div id="stat-site-label" class="stat-label">👥 总访客数</div>
                         <div class="stat-value">
                             <span id="busuanzi_value_site_uv">--</span>
                         </div>
-                        <div class="stat-unit">人</div>
+                        <div id="stat-site-unit" class="stat-unit">人</div>
                     </div>
                 </div>
             </div>
         </a>
 
-        <a class="badge-link" href="https://visitor-badge.laobi.icu/" target="_blank" rel="noopener noreferrer" aria-label="打开 Visitor Badge 服务">
+        <a id="badge-link" class="badge-link" href="https://visitor-badge.laobi.icu/" target="_blank" rel="noopener noreferrer" aria-label="打开 Visitor Badge 服务">
             <div class="badge-box">
-                <div class="badge-title">🧪 Visitor Badge 测试项</div>
-                <p class="badge-desc">
+                <div id="badge-title" class="badge-title">🧪 Visitor Badge 测试项</div>
+                <p id="badge-desc" class="badge-desc">
                     用于验证 README 中的 <strong>visitor-badge</strong> 计数是否随脚本执行而变化。点击此区域可跳转到对应计数服务。
                 </p>
                 <div class="badge-preview">
@@ -322,8 +384,8 @@
         </a>
         
         <div class="info-box">
-            <h3>💡 使用说明</h3>
-            <p>
+            <h3 id="info-title">💡 使用说明</h3>
+            <p id="info-desc">
                 1. 这个页面使用 <a class="service-link" href="https://busuanzi.ibruce.info/" target="_blank" rel="noopener noreferrer">不蒜子</a> 统计服务来记录访问量<br>
                 2. 运行 <code>visitor_badge_attack.py</code> 或 <code>selenium_all_website.py</code> 脚本可模拟访问<br>
                 3. 点击“刷新统计”后可查看最新的 <a class="service-link" href="https://busuanzi.ibruce.info/" target="_blank" rel="noopener noreferrer">不蒜子</a> 数据和 <a class="service-link" href="https://visitor-badge.laobi.icu/" target="_blank" rel="noopener noreferrer">Badge 变化</a>
@@ -335,25 +397,201 @@
             <span id="refresh-status" class="refresh-status">准备就绪</span>
         </div>
 
-        <p class="tip">💡 建议每次运行脚本后点击一次刷新统计</p>
+        <p id="tip-text" class="tip">💡 建议每次运行脚本后点击一次刷新统计</p>
         
-        <a href="https://github.com/Ronchy2000/Visitor-Counter-Cheater" class="github-link" target="_blank" rel="noopener noreferrer">
+        <a id="github-link" href="https://github.com/Ronchy2000/Visitor-Counter-Cheater" class="github-link" target="_blank" rel="noopener noreferrer">
             📦 查看 GitHub 项目
         </a>
     </div>
     
     <script>
+        const BUSUANZI_HOME_URL = "https://busuanzi.ibruce.info/";
+        const BADGE_HOME_URL = "https://visitor-badge.laobi.icu/";
         const BUSUANZI_SCRIPT_URL = "https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js";
         const BADGE_URL = "https://visitor-badge.laobi.icu/badge?page_id=ronchy2000.Visitor-Counter-Cheater&left_color=gray&right_color=blue&style=for-the-badge";
+        const LANG_STORAGE_KEY = "vcc_lang";
 
+        const i18n = {
+            zh: {
+                htmlLang: "zh-CN",
+                pageTitle: "访问量统计测试页面",
+                metaDescription: "访问量统计测试页面，展示不蒜子统计服务的实时页面阅读量和访客数。",
+                heading: "🚀 访问量统计测试",
+                statPageLabel: "📖 总阅读量",
+                statPageUnit: "次",
+                statSiteLabel: "👥 总访客数",
+                statSiteUnit: "人",
+                statsAriaLabel: "打开不蒜子统计服务",
+                badgeAriaLabel: "打开 Visitor Badge 服务",
+                badgeTitle: "🧪 Visitor Badge 测试项",
+                badgeAlt: "Visitor Badge 计数",
+                infoTitle: "💡 使用说明",
+                refreshBtn: "🔄 刷新统计",
+                statusReady: "准备就绪",
+                statusRefreshing: "刷新中...",
+                statusRefreshedPrefix: "已刷新 ",
+                statusFailed: "刷新失败，请稍后重试",
+                tip: "💡 建议每次运行脚本后点击一次刷新统计",
+                githubLinkText: "📦 查看 GitHub 项目"
+            },
+            en: {
+                htmlLang: "en",
+                pageTitle: "Visitor Counter Test Page",
+                metaDescription: "Visitor counter test page showing real-time page views and unique visitors with Busuanzi analytics.",
+                heading: "🚀 Visitor Counter Test",
+                statPageLabel: "📖 Page Views",
+                statPageUnit: "views",
+                statSiteLabel: "👥 Unique Visitors",
+                statSiteUnit: "users",
+                statsAriaLabel: "Open Busuanzi analytics service",
+                badgeAriaLabel: "Open Visitor Badge service",
+                badgeTitle: "🧪 Visitor Badge Test",
+                badgeAlt: "Visitor Badge count",
+                infoTitle: "💡 Instructions",
+                refreshBtn: "🔄 Refresh Stats",
+                statusReady: "Ready",
+                statusRefreshing: "Refreshing...",
+                statusRefreshedPrefix: "Refreshed ",
+                statusFailed: "Refresh failed, please try again.",
+                tip: "💡 Click refresh after running scripts to view the latest changes.",
+                githubLinkText: "📦 View on GitHub"
+            }
+        };
+
+        const langButtons = document.querySelectorAll(".lang-option");
+        const pageTitleEl = document.getElementById("page-title");
+        const subtitleText = document.getElementById("subtitle-text");
+        const statsLink = document.getElementById("stats-link");
+        const statPageLabel = document.getElementById("stat-page-label");
+        const statPageUnit = document.getElementById("stat-page-unit");
+        const statSiteLabel = document.getElementById("stat-site-label");
+        const statSiteUnit = document.getElementById("stat-site-unit");
+        const badgeLink = document.getElementById("badge-link");
+        const badgeTitle = document.getElementById("badge-title");
+        const badgeDesc = document.getElementById("badge-desc");
+        const badgeImg = document.getElementById("visitor-badge-img");
+        const infoTitle = document.getElementById("info-title");
+        const infoDesc = document.getElementById("info-desc");
         const refreshBtn = document.getElementById("refresh-btn");
         const refreshStatus = document.getElementById("refresh-status");
-        const badgeImg = document.getElementById("visitor-badge-img");
+        const tipText = document.getElementById("tip-text");
+        const githubLink = document.getElementById("github-link");
         const pagePv = document.getElementById("busuanzi_value_page_pv");
         const siteUv = document.getElementById("busuanzi_value_site_uv");
+        const metaDescriptionEl = document.querySelector('meta[name="description"]');
 
-        function setStatus(text) {
-            refreshStatus.textContent = text;
+        let currentLang = "zh";
+        let statusState = "ready";
+        let lastRefreshAt = null;
+
+        function serviceLink(url, label) {
+            return `<a class="service-link" href="${url}" target="_blank" rel="noopener noreferrer">${label}</a>`;
+        }
+
+        function getSubtitle(lang) {
+            if (lang === "en") {
+                return `Track page traffic in real time with ${serviceLink(BUSUANZI_HOME_URL, "Busuanzi")} analytics service`;
+            }
+            return `使用 ${serviceLink(BUSUANZI_HOME_URL, "不蒜子")} 统计服务实时监控页面访问数据`;
+        }
+
+        function getBadgeDesc(lang) {
+            if (lang === "en") {
+                return 'Use this section to verify whether the README <strong>visitor-badge</strong> count changes after script execution. Click this card to open the related counter service.';
+            }
+            return '用于验证 README 中的 <strong>visitor-badge</strong> 计数是否随脚本执行而变化。点击此区域可跳转到对应计数服务。';
+        }
+
+        function getInfoDesc(lang) {
+            if (lang === "en") {
+                return `1. This page uses ${serviceLink(BUSUANZI_HOME_URL, "Busuanzi")} to record visits<br>2. Run <code>visitor_badge_attack.py</code> or <code>selenium_all_website.py</code> to simulate visits<br>3. Click "Refresh Stats" to check the latest ${serviceLink(BUSUANZI_HOME_URL, "Busuanzi")} values and ${serviceLink(BADGE_HOME_URL, "Badge changes")}`;
+            }
+            return `1. 这个页面使用 ${serviceLink(BUSUANZI_HOME_URL, "不蒜子")} 统计服务来记录访问量<br>2. 运行 <code>visitor_badge_attack.py</code> 或 <code>selenium_all_website.py</code> 脚本可模拟访问<br>3. 点击“刷新统计”后可查看最新的 ${serviceLink(BUSUANZI_HOME_URL, "不蒜子")} 数据和 ${serviceLink(BADGE_HOME_URL, "Badge 变化")}`;
+        }
+
+        function getLocale() {
+            return currentLang === "zh" ? "zh-CN" : "en-US";
+        }
+
+        function renderStatus() {
+            const t = i18n[currentLang];
+            if (statusState === "refreshing") {
+                refreshStatus.textContent = t.statusRefreshing;
+                return;
+            }
+
+            if (statusState === "failed") {
+                refreshStatus.textContent = t.statusFailed;
+                return;
+            }
+
+            if (statusState === "refreshed" && lastRefreshAt) {
+                const timeText = lastRefreshAt.toLocaleTimeString(getLocale(), { hour12: false });
+                refreshStatus.textContent = `${t.statusRefreshedPrefix}${timeText}`;
+                return;
+            }
+
+            refreshStatus.textContent = t.statusReady;
+        }
+
+        function saveLanguage(lang) {
+            try {
+                localStorage.setItem(LANG_STORAGE_KEY, lang);
+            } catch (error) {
+                return;
+            }
+        }
+
+        function getSavedLanguage() {
+            try {
+                return localStorage.getItem(LANG_STORAGE_KEY);
+            } catch (error) {
+                return null;
+            }
+        }
+
+        function detectInitialLanguage() {
+            const saved = getSavedLanguage();
+            if (saved && i18n[saved]) {
+                return saved;
+            }
+            const browserLang = (navigator.language || "").toLowerCase();
+            return browserLang.startsWith("zh") ? "zh" : "en";
+        }
+
+        function applyLanguage(lang) {
+            currentLang = i18n[lang] ? lang : "zh";
+            saveLanguage(currentLang);
+
+            const t = i18n[currentLang];
+            document.documentElement.lang = t.htmlLang;
+            document.title = t.pageTitle;
+            if (metaDescriptionEl) {
+                metaDescriptionEl.setAttribute("content", t.metaDescription);
+            }
+
+            pageTitleEl.textContent = t.heading;
+            subtitleText.innerHTML = getSubtitle(currentLang);
+            statPageLabel.textContent = t.statPageLabel;
+            statPageUnit.textContent = t.statPageUnit;
+            statSiteLabel.textContent = t.statSiteLabel;
+            statSiteUnit.textContent = t.statSiteUnit;
+            statsLink.setAttribute("aria-label", t.statsAriaLabel);
+            badgeLink.setAttribute("aria-label", t.badgeAriaLabel);
+            badgeTitle.textContent = t.badgeTitle;
+            badgeDesc.innerHTML = getBadgeDesc(currentLang);
+            badgeImg.alt = t.badgeAlt;
+            infoTitle.textContent = t.infoTitle;
+            infoDesc.innerHTML = getInfoDesc(currentLang);
+            refreshBtn.textContent = t.refreshBtn;
+            tipText.textContent = t.tip;
+            githubLink.textContent = t.githubLinkText;
+
+            langButtons.forEach((btn) => {
+                btn.classList.toggle("active", btn.dataset.lang === currentLang);
+            });
+
+            renderStatus();
         }
 
         function resetBusuanziNumbers() {
@@ -384,22 +622,31 @@
 
         async function refreshStats() {
             refreshBtn.disabled = true;
-            setStatus("刷新中...");
+            statusState = "refreshing";
+            renderStatus();
             resetBusuanziNumbers();
             refreshBadgeImage();
 
             try {
                 await loadBusuanziScript();
-                const now = new Date().toLocaleTimeString("zh-CN", { hour12: false });
-                setStatus(`已刷新 ${now}`);
+                lastRefreshAt = new Date();
+                statusState = "refreshed";
             } catch (error) {
-                setStatus("刷新失败，请稍后重试");
+                statusState = "failed";
             } finally {
                 refreshBtn.disabled = false;
+                renderStatus();
             }
         }
 
+        langButtons.forEach((btn) => {
+            btn.addEventListener("click", () => {
+                applyLanguage(btn.dataset.lang);
+            });
+        });
+
         refreshBtn.addEventListener("click", refreshStats);
+        applyLanguage(detectInitialLanguage());
         refreshStats();
     </script>
 </body>

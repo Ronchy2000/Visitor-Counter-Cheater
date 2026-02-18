@@ -1,5 +1,9 @@
 # 西安电子科技大学教师主页计数分析
 
+[中文](./xidian_analysis.md) | [English](./xidian_analysis.en.md)
+
+---
+
 ## 目标网站
 
 **示例页面**: https://faculty.xidian.edu.cn/DANDAN1/zh_CN/index.htm
@@ -56,7 +60,7 @@
 
 ## 技术细节
 
-本目录包含该系统的完整 JavaScript 逆向分析文件，包括：
+`xidian_analysis/` 目录包含该系统的完整 JavaScript 逆向分析文件，包括：
 - 访问统计核心代码
 - 点赞系统实现
 - 请求参数构造逻辑

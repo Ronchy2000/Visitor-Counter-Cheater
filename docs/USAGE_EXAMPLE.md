@@ -1,5 +1,9 @@
 # 使用示例
 
+[中文](./USAGE_EXAMPLE.md) | [English](./USAGE_EXAMPLE.en.md)
+
+---
+
 ## visitor-badge 攻击脚本
 
 ### 示例 1：测试本项目
@@ -46,7 +50,7 @@ CONFIG = {
 ### 不蒜子攻击
 
 ```python
-# 编辑 busuanzi_efficient.py
+# 编辑 busuanzi_attack_efficient.py
 CONFIG = {
     "URL": "https://your-website.com/",
     "REFERER": "https://your-website.com/",
@@ -82,7 +86,7 @@ CONFIG = {
 | 脚本 | 目标 | 速度 | 成功率 | 限制 |
 |------|------|------|--------|------|
 | visitor_badge_attack.py | 本项目 | ~600ms | 100% | 无 |
-| busuanzi_efficient.py | 不蒜子 | ~1000ms | 100% | 无 |
+| busuanzi_attack_efficient.py | 不蒜子 | ~1000ms | 100% | 无 |
 | xidian_counter_attack.py | 西电访问量 | ~35ms | 100% | 无 |
 | xidian_like_attack.py | 西电点赞 | ~40ms | 第1次成功 | IP限制 |
 | selenium_all_website.py | 通用 | ~5000ms | 95%+ | 反爬虫检测 |

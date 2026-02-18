@@ -1,5 +1,9 @@
 # Visitor Badge 计数工具
 
+[中文](./visitor_badge_analysis.md) | [English](./visitor_badge_analysis.en.md)
+
+---
+
 ## 服务说明
 
 **项目地址**: [visitor-badge](https://github.com/jwenjian/visitor-badge)
@@ -125,7 +129,7 @@ https://visitor-badge.laobi.icu/badge?page_id=Ronchy2000.Xidian-LaTeX-Template-f
 
 - `visitor_badge_tool.py` - 交互式工具（实用）
 - `analyze_visitor_badge.py` - 分析脚本（学习）
-- `README.md` - 使用文档
+- `visitor_badge_analysis.md` - 使用文档
 - ✓ 支持查询模式（不增加计数）
 - ✓ 仅需标准 HTTP 请求
 
